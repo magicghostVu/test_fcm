@@ -2,6 +2,7 @@ package m.com.test_fcm.http.api.inf;
 
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -13,6 +14,6 @@ import retrofit2.http.POST;
 public interface FbTokenService {
 
     @POST("/update-token-firebase-uid")
-    Call<String> postTokenAndUid(@Body Map<String, Object> tokenUid);
+    Call<ResponseBody> postTokenAndUid(@Body Map<String, Object> tokenUid);
 
 }
