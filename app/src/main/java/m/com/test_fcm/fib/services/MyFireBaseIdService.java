@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import m.com.test_fcm.http.api.inf.FbTokenService;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,7 +44,7 @@ public class MyFireBaseIdService extends FirebaseInstanceIdService implements Ca
         //todo: lấy token rồi gửi lên server
 
 
-        String url = "http://localhost:8080/update-token-uid/";
+        String url = "http://192.168.1.126:8080/update-token-uid/";
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -62,13 +63,15 @@ public class MyFireBaseIdService extends FirebaseInstanceIdService implements Ca
         dataPost.put("uid", 1235435);
 
 
-        Call<String> res = fbTokenService.postTokenAndUid(dataPost);
+        Call<ResponseBody> res = fbTokenService.postTokenAndUid(dataPost);
 
         //res.
 
 
         try {
-            res.execute();
+            Response<ResponseBody> _res = res.execute();
+
+            Log.d(TAG, _res.body().string());
         } catch (Exception e) {
             e.printStackTrace();
         }
